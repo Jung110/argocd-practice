@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"nginx-test01","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"nginx","app.kubernetes.io/version":"1.25.2","argocd.argoproj.io/instance":"nginx-test01","helm.sh/chart":"nginx-15.3.0"},"name":"nginx-test01","namespace":"nginx-argocd-test01"},"spec":{"replicas":1,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app.kubernetes.io/instance":"nginx-test01","app.kubernetes.io/name":"nginx"}},"strategy":{"rollingUpdate":{},"type":"RollingUpdate"},"template":{"metadata":{"annotations":null,"labels":{"app.kubernetes.io/instance":"nginx-test01","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"nginx","app.kubernetes.io/version":"1.25.2","helm.sh/chart":"nginx-15.3.0"}},"spec":{"affinity":{"nodeAffinity":null,"podAffinity":null,"podAntiAffinity":{"preferredDuringSchedulingIgnoredDuringExecution":[{"podAffinityTerm":{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"nginx-test01","app.kubernetes.io/name":"nginx"}},"topologyKey":"kubernetes.io/hostname"},"weight":1}]}},"automountServiceAccountToken":false,"containers":[{"env":[{"name":"BITNAMI_DEBUG","value":"false"},{"name":"NGINX_HTTP_PORT_NUMBER","value":"8080"}],"envFrom":null,"image":"docker.io/bitnami/nginx:1.25.2-debian-11-r3","imagePullPolicy":"IfNotPresent","livenessProbe":{"failureThreshold":6,"initialDelaySeconds":30,"periodSeconds":10,"successThreshold":1,"tcpSocket":{"port":"http"},"timeoutSeconds":5},"name":"nginx","ports":[{"containerPort":8080,"name":"http"}],"readinessProbe":{"failureThreshold":3,"initialDelaySeconds":5,"periodSeconds":5,"successThreshold":1,"tcpSocket":{"port":"http"},"timeoutSeconds":3},"resources":{"limits":{},"requests":{}},"volumeMounts":null}],"hostIPC":false,"hostNetwork":false,"initContainers":null,"serviceAccountName":"default","shareProcessNamespace":false,"volumes":null}}}}
+  creationTimestamp: '2023-09-25T01:19:32Z'
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: nginx-test01
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/version: 1.25.2
+    argocd.argoproj.io/instance: nginx-test01
+    helm.sh/chart: nginx-15.3.0
+  name: nginx-test01
+  namespace: nginx-argocd-test01
+  resourceVersion: '313868'
+  uid: aad3d4ec-8a78-4817-b227-a7d16ca01aa7
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: nginx-test01
+      app.kubernetes.io/name: nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: nginx-test01
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: nginx
+        app.kubernetes.io/version: 1.25.2
+        helm.sh/chart: nginx-15.3.0
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: nginx-test01
+                    app.kubernetes.io/name: nginx
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+      automountServiceAccountToken: false
+      containers:
+        - env:
+            - name: BITNAMI_DEBUG
+              value: 'false'
+            - name: NGINX_HTTP_PORT_NUMBER
+              value: '8080'
+          image: 'docker.io/bitnami/nginx:1.25.2-debian-11-r3'
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: http
+            timeoutSeconds: 5
+          name: nginx
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            tcpSocket:
+              port: http
+            timeoutSeconds: 3
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      shareProcessNamespace: false
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+    - lastTransitionTime: '2023-09-25T01:19:38Z'
+      lastUpdateTime: '2023-09-25T01:19:38Z'
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2023-09-25T01:19:33Z'
+      lastUpdateTime: '2023-09-25T01:19:38Z'
+      message: ReplicaSet "nginx-test01-77b6d455c" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: 'True'
+      type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
+

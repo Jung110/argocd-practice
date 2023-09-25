@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"nginx-test01","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"nginx","app.kubernetes.io/version":"1.25.2","argocd.argoproj.io/instance":"nginx-test01","helm.sh/chart":"nginx-15.3.0"},"name":"nginx-test01","namespace":"nginx-argocd-test01"},"spec":{"externalTrafficPolicy":"Cluster","ports":[{"name":"http","port":80,"targetPort":"http"}],"selector":{"app.kubernetes.io/instance":"nginx-test01","app.kubernetes.io/name":"nginx"},"sessionAffinity":"None","type":"LoadBalancer"}}
+    metallb.universe.tf/ip-allocated-from-pool: my-metallb-config
+  creationTimestamp: '2023-09-25T01:19:32Z'
+  labels:
+    app.kubernetes.io/instance: nginx-test01
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/version: 1.25.2
+    argocd.argoproj.io/instance: nginx-test01
+    helm.sh/chart: nginx-15.3.0
+  name: nginx-test01
+  namespace: nginx-argocd-test01
+  resourceVersion: '313824'
+  uid: c40613f7-16e2-42c0-99e3-4ef25a6f38dd
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.97.124.233
+  clusterIPs:
+    - 10.97.124.233
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: http
+      nodePort: 31778
+      port: 80
+      protocol: TCP
+      targetPort: http
+  selector:
+    app.kubernetes.io/instance: nginx-test01
+    app.kubernetes.io/name: nginx
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+      - ip: 172.31.9.33
+
